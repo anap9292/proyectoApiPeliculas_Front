@@ -2,6 +2,7 @@ class ControladorBase {
 
     constructor(){
         this.UrlBase = "https://localhost:7190/api/";
+        this.UrlParametros = [];
     }    
 
     async iniciarAsync() {
@@ -55,9 +56,23 @@ class ControladorBase {
     }
     
     agregarBoton(fila, pantallaEditar, id){
-        let columna = document.createElement('a');    
+        let columna = document.createElement('a'); 
+       
         columna.innerHTML = "EDITAR"
         columna.href = `./${pantallaEditar}.html?id=${id}`;
+        /*columna.className = 'btn'*/
+        columna.target = '_blank'
+        /*columna.style.float = 'center'*/
         fila.appendChild(columna);
     }
+
+    cargarVista(idControl, valor) {
+
+        const control = document.querySelector(`#${idControl}`);
+
+        if(control) {
+
+            control.value = valor;
+        }
+    }   
 }

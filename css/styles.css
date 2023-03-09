@@ -66,6 +66,9 @@ tbody tr:hover {
 }
 .Editar{
     background-color: #f4f800;
+  
+    cursor: pointer;  
+   
 }
 .Borrar{
     background-color: #f80000;
@@ -95,3 +98,18 @@ tbody tr:hover {
 .titulo-inpt{
     padding-top: 1em;
 }
+
+a{
+    text-decoration: none;
+    color: #fff;
+
+
+    
+}
+/*
+tr{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}*/

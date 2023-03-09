@@ -12,7 +12,7 @@
     <header>
                 <div class="nav">
               
-                <h1>Listado de actores </h1>
+                <h1>Listado de Peliculas </h1>
             
             </div>
         
@@ -23,13 +23,14 @@
             <table>
                 <thead>
                      <td> 
-                    <button class="btn">Nuevo Actor</button>
+                    <button class="btn">Nueva peli</button>
                   </td> 
                     <tr>
                         <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Fecha de nacimiento</th>
-                        <th>Foto</th>
+                        <th>Título</th>
+                        <th>En cines</th>
+                        <th>Fecha estreno</th>
+                        <th>Poster</th>
                         <th>Acción</th>
 
                     </tr>
@@ -42,14 +43,14 @@
 
     </section>
     <script src="/Js/controladorBase.js"></script>
-    <script src="/Js/consultaActor.js"></script>   
+    <script src="/Js/consultaPelicula.js"></script>   
     <script>
         window.onload = async () => {  
 
-            let consultaActor = new ConsultaActor();
+            let consultaPelicula = new ConsultaPelicula();
 
-            await consultaActor.iniciarAsync();
+            await consultaPelicula.iniciarAsync();
         };
-    </script>
+    </script> 
 </body>
 </html>

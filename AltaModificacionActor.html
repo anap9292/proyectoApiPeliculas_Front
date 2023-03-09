@@ -18,21 +18,32 @@
 
     <section class="body">   
         <div class="container">
+            <form action="" class="formulario">
             <p class="titulo-inpt">Nombre</p>
-            <input type="text" class="inpt"> <br/>
+            <input type="text" class="inpt" id="iNombre"> <br/>
            
           
             <p class="titulo-inpt">Fecha de nacimiento</p>
-            <input type="text" class="inpt"> <br/>
+            <input type="text" class="inpt" id="iFechaNacimiento"> <br/>
 
           
             <p class="titulo-inpt">Foto</p>
-            <input type="text" class="inpt"> <br/>
+            <input type="text" class="inpt" id="iFoto"> <br/>
            
             <button class="enviar">Enviar</button>
+        </form>
         </div>
 
     </section>
-    
+    <script src="/Js/controladorBase.js"></script>
+    <script src="/Js/AltaModificacionActor.js"></script>
+    <script>
+       window.onload = async () => {  
+
+            let altaModificacionActor = new AltaModificacionActor();
+
+            await altaModificacionActor.iniciarAsync();
+        };
+    </script>
 </body>
 </html>
