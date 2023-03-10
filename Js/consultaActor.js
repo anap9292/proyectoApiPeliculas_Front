@@ -13,7 +13,19 @@ class ConsultaActor extends ControladorBase {
 
             this.cargarDatos(tbody, listaActores, "AltaModificacionActor");
         }
+
+        this.configurarEventos();
     } 
+
+    configurarEventos() {
+        
+        const boton = document.querySelector("#nuevo")
+
+        boton.addEventListener("click", async (evento) => {
+
+            window.location = "./AltaModificacionActor.html"
+        });
+    }
 }
 
 

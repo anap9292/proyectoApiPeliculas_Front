@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Proyecto Peliculas</title>
+</head>
+<body>
+    <header>
+            <div class="nav">
+                <h2>Editar pelicula</h2>
+            </div>
+          </nav>
+    </header>
+
+    <section class="body">   
+        <div class="container">
+            <form action="" class="formulario">
+            <p class="titulo-inpt">Título</p>
+            <input type="text" class="inpt" id="iTitulo"> <br/>
+           
+          
+            <p class="titulo-inpt">En cartelera</p>
+            <input type="text" class="inpt" id="iEnCines"> <br/>
+
+          
+            <p class="titulo-inpt">Fecha estreno</p>
+            <input type="text" class="inpt" id="iFechaEstreno"> <br/>
+           
+            <p class="titulo-inpt">Poster</p>
+            <input type="text" class="inpt" id="iPoster"> <br/>
+           
+            <button class="enviar">Enviar</button>
+        </form>
+        </div>
+
+    </section>
+    <script src="/Js/controladorBase.js"></script>
+    <script src="/Js/AltaModificacionPelicula.js"></script>
+    <script>
+       window.onload = async () => {  
+
+            let altaModificacionPelicula = new AltaModificacionPelicula();
+
+            await altaModificacionPelicula.iniciarAsync();
+        };
+    </script>
+</body>
+</html>

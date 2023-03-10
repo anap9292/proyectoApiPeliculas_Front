@@ -26,6 +26,54 @@ class ControladorBase {
         return json;
     }
 
+    async fetchApiPut(endpointApi, modelo){
+
+        const opciones = 
+        {
+            method: "PUT", 
+            body: JSON.stringify(modelo), 
+            headers: 
+            { 
+                "Content-Type": "application/json"
+            }        
+        };
+
+        const respuesta = await fetch(this.UrlBase + endpointApi, opciones);
+
+        if (respuesta.ok) {
+            
+            alert("Se guardo correctamente!")
+
+        } else {
+
+            alert("Error al conectar con el servidor");
+        }
+    }
+
+    async fetchApiPost(endpointApi, modelo){
+
+        const opciones = 
+        {
+            method: "POST", 
+            body: JSON.stringify(modelo), 
+            headers: 
+            { 
+                "Content-Type": "application/json"
+            }        
+        };
+
+        const respuesta = await fetch(this.UrlBase + endpointApi, opciones);
+
+        if (respuesta.ok) {
+            
+            alert("Se guardo correctamente!")
+
+        } else {
+
+            alert("Error al conectar con el servidor");
+        }
+    }       
+
     cargarDatos(tbody, listaModelos, pantallaEditar)
     {
         for(const modelo of listaModelos){
@@ -55,14 +103,19 @@ class ControladorBase {
         fila.appendChild(columna);
     }
     
-    agregarBoton(fila, pantallaEditar, id){
-        let columna = document.createElement('a'); 
-       
-        columna.innerHTML = "EDITAR"
-        columna.href = `./${pantallaEditar}.html?id=${id}`;
+    agregarBoton(fila, pantallaEditar, id) {
+
+        let columna = document.createElement('td');    
+
+        let boton = document.createElement('a');        
+        boton.innerHTML = "EDITAR"
+        boton.href = `./${pantallaEditar}.html?id=${id}`;
         /*columna.className = 'btn'*/
-        columna.target = '_blank'
+        boton.target = '_blank'
         /*columna.style.float = 'center'*/
+
+        columna.appendChild(boton);
+
         fila.appendChild(columna);
     }
 
@@ -74,5 +127,18 @@ class ControladorBase {
 
             control.value = valor;
         }
-    }   
+    }
+    
+    obtenerVista(idControl) {
+
+        let valor;
+        const control = document.querySelector(`#${idControl}`);
+
+        if(control) {
+
+            valor = control.value;
+        }
+
+        return valor;
+    }
 }
