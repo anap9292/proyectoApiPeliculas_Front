@@ -1,33 +1,14 @@
 class AltaModificacionActor extends ControladorBase {
     
     constructor(){
-        super();
-        this.Id = 0;
+        super("Actores", "altaModificacionActor");
     }
 
     async iniciarAsync() {
-    
-        this.cargarVistas();
+        await this.cargarModelo();
+        await this.configurarVistas();
         this.configurarEventos();
     } 
-
-    async cargarVistas() {
-
-        const urlParametros = new URLSearchParams(window.location.search);
-        this.Id = urlParametros.get("id");
-
-        if(this.Id) {
-
-            const actor = await this.fetchApiGet("Actores/ObtenerActor?id="+this.Id);
-
-            if(actor) {
-    
-                this.cargarVista("iNombre", actor.nombre);
-                this.cargarVista("iFechaNacimiento", actor.fechaNacimiento);
-                this.cargarVista("iFoto", actor.foto);            
-            }
-        }
-    }
 
     configurarEventos() {
         

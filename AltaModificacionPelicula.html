@@ -18,7 +18,7 @@
 
     <section class="body">   
         <div class="container">
-            <form action="" class="formulario">
+           
             <p class="titulo-inpt">Título</p>
             <input type="text" class="inpt" id="iTitulo"> <br/>
            
@@ -33,20 +33,20 @@
             <p class="titulo-inpt">Poster</p>
             <input type="text" class="inpt" id="iPoster"> <br/>
            
-            <button class="enviar">Enviar</button>
-        </form>
+            <button class="enviar" id="guardar">Guardar</button>
+       
         </div>
 
     </section>
-    <script src="/Js/controladorBase.js"></script>
-    <script src="/Js/AltaModificacionPelicula.js"></script>
+    <script src="/Js/controladores/controladorBase.js"></script>
+    <script src="/Js/controladores/AltaModificacionPelicula.js"></script>
     <script>
-       window.onload = async () => {  
-
-            let altaModificacionPelicula = new AltaModificacionPelicula();
-
-            await altaModificacionPelicula.iniciarAsync();
-        };
-    </script>
+        window.onload = async () => {  
+ 
+             let altaModificacionPelicula = new AltaModificacionPelicula();
+ 
+             await altaModificacionPelicula.iniciarAsync();
+         };
+     </script>
 </body>
 </html>

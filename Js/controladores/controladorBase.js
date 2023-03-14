@@ -1,19 +1,21 @@
 class ControladorBase {
 
-    constructor(){
-        this.UrlBase = "https://localhost:7190/api/";
-        this.UrlParametros = [];
+    constructor(controlador, configuracion){
+        this.Id = 0;
+        this.UrlBase = `https://localhost:7190/api/${controlador}/`;
+        this.Configuracion = configuracion;
+        this.Modelo = {};
     }    
 
     async iniciarAsync() {
 
     }
 
-    async fetchApiGet(endpointApi){
+    async fetchApiGet(metodoApi){
 
         let json;
 
-        let respuesta = await fetch(this.UrlBase + endpointApi);
+        let respuesta = await fetch(this.UrlBase + metodoApi);
 
         if (respuesta.ok) {
     
@@ -38,7 +40,7 @@ class ControladorBase {
             }        
         };
 
-        const respuesta = await fetch(this.UrlBase + endpointApi, opciones);
+        const respuesta = await fetch(this.UrlBase + metodoApi, opciones);
 
         if (respuesta.ok) {
             
@@ -62,7 +64,7 @@ class ControladorBase {
             }        
         };
 
-        const respuesta = await fetch(this.UrlBase + endpointApi, opciones);
+        const respuesta = await fetch(this.UrlBase + metodoApi, opciones);
 
         if (respuesta.ok) {
             
@@ -117,6 +119,30 @@ class ControladorBase {
         columna.appendChild(boton);
 
         fila.appendChild(columna);
+    }
+
+    async cargarModelo(){
+        const urlParametros = new URLSearchParams(window.location.search);
+        const id = urlParametros.get("id");
+
+        if(id) {
+
+            this.Id = id;
+            this.Modelo = await this.fetchApiGet(`Get?id=${this.Id}`);
+        }   
+    }
+
+    async configurarVistas(){
+
+        if(this.Modelo) {
+
+            const configuracion = await import(`../configuraciones/${this.Configuracion}.js`);
+
+            for(const vista of configuracion.Vistas) {
+
+                this.cargarVista(vista.Nombre, this.Modelo[vista.Binding]);
+            }        
+        }     
     }
 
     cargarVista(idControl, valor) {

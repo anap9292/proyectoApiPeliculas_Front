@@ -13,5 +13,16 @@ class ConsultaPelicula extends ControladorBase {
 
             this.cargarDatos(tbody, listaPeliculas, "AltaModificacionPelicula");
         }
+
+        this.configurarEventos();
     } 
+    configurarEventos() {
+        
+        const boton = document.querySelector("#nuevo")
+
+        boton.addEventListener("click", async (evento) => {
+
+            window.location = "./AltaModificacionPelicula.html"
+        });
+    }
 }

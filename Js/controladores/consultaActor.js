@@ -1,13 +1,13 @@
 class ConsultaActor extends ControladorBase {
     
     constructor(){
-        super();
+        super("Actores","");
     }
 
     async iniciarAsync() {
 
         const tbody = document.querySelector('#data');
-        const listaActores = await this.fetchApiGet("Actores");
+        const listaActores = await this.fetchApiGet("GetAll");
 
         if(listaActores){
 
