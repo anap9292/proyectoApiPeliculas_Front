@@ -1,50 +1,15 @@
 class AltaModificacionPelicula extends ControladorBase {
     
     constructor(){
-        super();
-        this.Id = 0;
+        super("Peliculas", "altaModificacionPelicula");
     }
 
     async iniciarAsync() {
-        this.cargarVistas();
+        await this.cargarModelo();
+        await this.configurarVistas();
         this.configurarEventos();
     }
         
-      /*  const urlParametros = new URLSearchParams(window.location.search);
-        const id = urlParametros.get("id");
-
-        if(id) {
-
-            const pelicula = await this.fetchApiGet("pelicula/obtenerPelicula/id="+id);
-
-            if(pelicula) {
-    
-                this.cargarVista("iTitulo", pelicula.titulo);
-                this.cargarVista("iEnCines", pelicula.enCines);   
-                this.cargarVista("iFechaEstreno", pelicula.fechaEstreno);
-                this.cargarVista("iPoster", pelicula.poster);            
-            }
-        }
-    } */
-
-    async cargarVistas() {
-
-        const urlParametros = new URLSearchParams(window.location.search);
-        this.Id = urlParametros.get("id");
-
-        if(this.Id) {
-
-            const pelicula = await this.fetchApiGet("Peliculas/obtenerPelicula?id="+this.Id);
-
-            if(pelicula) {
-    
-                this.cargarVista("iTitulo", pelicula.titulo);
-                this.cargarVista("iEnCines", pelicula.enCines);
-                this.cargarVista("iFechaEstreno", pelicula.fechaEstreno);
-                this.cargarVista("iPoster", pelicula.poster);         
-            }
-        }
-    }
      configurarEventos() {
         
         const boton = document.querySelector("#guardar")

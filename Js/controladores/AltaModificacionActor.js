@@ -20,23 +20,15 @@ class AltaModificacionActor extends ControladorBase {
         });
     }
 
-    async guardar() {
-        
-        const actorDto = {
-            Id: this.Id,
-            Nombre: this.obtenerVista("iNombre"),
-            FechaNacimiento: this.obtenerVista("iFechaNacimiento")
-        };
+    async insertar(actorDTO) {
+        await this.fetchApiPost("Insertar", actorDTO);           
+    }
 
-        if(this.Id) {
-            
-            await this.fetchApiPut("Actores/Actualizar", actorDto);
-        }
-        else {
-            
-            await this.fetchApiPost("Actores/Insertar", actorDto);            
-         }
+    async actualizar(actorDTO) {
+        await this.fetchApiPut("Actualizar", actorDTO);
+    }
 
+    async cerrarPantalla () {
         window.location = "./ConsultaActor.html";
     }
 }

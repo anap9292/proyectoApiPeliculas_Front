@@ -16,6 +16,7 @@ export const Vistas =
         Nombre: "iFoto",
         TipoControl: "InputText",
         Binding:"foto",
-        Obligatorio: false
+        Obligatorio: false,
+        MaxLargo: 10
     }        
 ]

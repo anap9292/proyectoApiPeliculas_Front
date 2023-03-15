@@ -1,13 +1,13 @@
 class ConsultaPelicula extends ControladorBase {
     
     constructor(){
-        super();
+        super("Peliculas");
     }
 
     async iniciarAsync() {
 
         const tbody = document.querySelector('#data');
-        const listaPeliculas = await this.fetchApiGet("Peliculas");
+        const listaPeliculas = await this.fetchApiGet("GetAll");
 
         if(listaPeliculas){
 
@@ -16,6 +16,7 @@ class ConsultaPelicula extends ControladorBase {
 
         this.configurarEventos();
     } 
+
     configurarEventos() {
         
         const boton = document.querySelector("#nuevo")

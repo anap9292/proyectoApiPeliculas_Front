@@ -5,6 +5,7 @@ class ControladorBase {
         this.UrlBase = `https://localhost:7190/api/${controlador}/`;
         this.Configuracion = configuracion;
         this.Modelo = {};
+        this.Vistas = [];
     }    
 
     async iniciarAsync() {
@@ -28,7 +29,7 @@ class ControladorBase {
         return json;
     }
 
-    async fetchApiPut(endpointApi, modelo){
+    async fetchApiPut(metodoApi, modelo){
 
         const opciones = 
         {
@@ -52,7 +53,7 @@ class ControladorBase {
         }
     }
 
-    async fetchApiPost(endpointApi, modelo){
+    async fetchApiPost(metodoApi, modelo){
 
         const opciones = 
         {
@@ -141,7 +142,9 @@ class ControladorBase {
             for(const vista of configuracion.Vistas) {
 
                 this.cargarVista(vista.Nombre, this.Modelo[vista.Binding]);
-            }        
+            }
+            
+            this.Vistas = configuracion.Vistas;
         }     
     }
 
@@ -153,6 +156,50 @@ class ControladorBase {
 
             control.value = valor;
         }
+    }
+
+    obtenerModelo(){
+
+        if(this.Modelo) {
+
+            for(const vista of this.Vistas) {
+
+                const valor = this.obtenerVista(vista.Nombre);
+
+                this.Modelo[vista.Binding] = valor;
+            }        
+        }
+        
+        return this.Modelo;
+    }
+
+    validarVistas() {
+
+        let valida = true;
+
+        for(const vista of this.Vistas) {
+
+            const valor = this.obtenerVista(vista.Nombre);
+
+            if(vista.Obligatorio) {
+
+                if(valor.length === 0)
+                {
+                    alert(`El campo ${vista.Nombre} es obligatorio.`);
+                    valida = false;
+                }
+            }
+
+            if(vista.MaxLargo) {
+
+                if(valor.length > vista.MaxLargo) {
+                    alert(`El campo ${vista.Nombre} debe tener menos de ${vista.MaxLargo} caracteres.`);
+                    valida = false;
+                }
+            }
+        }
+
+        return valida;
     }
     
     obtenerVista(idControl) {
@@ -167,4 +214,28 @@ class ControladorBase {
 
         return valor;
     }
+
+    async guardar() {
+
+        if(this.validarVistas())
+        {
+            this.Modelo = this.obtenerModelo();
+
+            if(this.Id) {
+                
+                await this.actualizar(this.Modelo);
+            }
+            else {
+                
+                await this.insertar(this.Modelo);          
+            }
+
+            await this.cerrarPantalla();
+        }
+    }
+    
+    //Metodos "virtuales"
+    async insertar() { }
+    async actualizar() { }
+    async cerrarPantalla() { }
 }
